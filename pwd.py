@@ -3,9 +3,28 @@
 # generates password with letters, digits and special symbols
 # Author: Ricardo Vieira
 # Creation date: 18/01/2021
+# Last change: 15/11/2021
 
 import secrets
 import string
+import sys
+
+default_pwd_len=20
+
+def error():
+    print("wrong parameter")
+    
+def pwd_len():
+    # if arg count < 1: password_length = default (20?)
+    # print(len(sys.argv))
+    if len(sys.argv) < 2:
+        return(default_pwd_len)
+    elif sys.argv[1].isdigit():
+        return(sys.argv[1])
+    else:
+        error()
+        return(default_pwd_len)
+    # else password_length = first arg
 
 def compliant_pwd(candidate_pwd):
     check_upper = check_lower = check_special_char = False
@@ -20,10 +39,11 @@ def compliant_pwd(candidate_pwd):
             check_special_char = True
     return check_lower and check_upper and check_special_char
         
-password_length=20
+password_length=int(pwd_len())
 special_characters = '._+-'
 password = ''
 alphabet = string.ascii_letters + string.digits + special_characters
 while not compliant_pwd(password):
     password = ''.join(secrets.choice(alphabet) for i in range(password_length))
-print(password)
+print("Length:",password_length)
+print("Password:",password)
