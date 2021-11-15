@@ -15,8 +15,6 @@ def error():
     print("wrong parameter")
     
 def pwd_len():
-    # if arg count < 1: password_length = default (20?)
-    # print(len(sys.argv))
     if len(sys.argv) < 2:
         return(default_pwd_len)
     elif sys.argv[1].isdigit():
@@ -29,7 +27,6 @@ def pwd_len():
 def compliant_pwd(candidate_pwd):
     check_upper = check_lower = check_special_char = False
     
-#    print('try --> '+candidate_pwd)
     for letter in candidate_pwd:
         if letter.isupper():
             check_upper = True
