@@ -9,20 +9,19 @@ import secrets
 import string
 import sys
 
-default_pwd_len=20
+DEFAULT_PWD_LEN=20
 
 def error():
     print("wrong parameter")
     
 def pwd_len():
     if len(sys.argv) < 2:
-        return(default_pwd_len)
+        return(DEFAULT_PWD_LEN)
     elif sys.argv[1].isdigit():
         return(sys.argv[1])
     else:
         error()
-        return(default_pwd_len)
-    # else password_length = first arg
+        return(DEFAULT_PWD_LEN)
 
 def compliant_pwd(candidate_pwd):
     check_upper = check_lower = check_special_char = False
