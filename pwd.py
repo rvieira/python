@@ -12,7 +12,7 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read('pwd.ini')
-default_pwd_len = int(config['defaults']['pwd_length'])
+default_pwd_len = config.getint('defaults','pwd_length')
 
 def error():
     print("wrong parameter")
