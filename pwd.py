@@ -8,20 +8,23 @@
 import secrets
 import string
 import sys
+import configparser
 
-DEFAULT_PWD_LEN=20
+config = configparser.ConfigParser()
+config.read('pwd.ini')
+default_pwd_len = int(config['defaults']['pwd_length'])
 
 def error():
     print("wrong parameter")
     
 def pwd_len():
     if len(sys.argv) < 2:
-        return(DEFAULT_PWD_LEN)
+        return(default_pwd_len)
     elif sys.argv[1].isdigit():
         return(sys.argv[1])
     else:
         error()
-        return(DEFAULT_PWD_LEN)
+        return(default_pwd_len)
 
 def compliant_pwd(candidate_pwd):
     check_upper = check_lower = check_special_char = False
@@ -37,7 +40,7 @@ def compliant_pwd(candidate_pwd):
         
 password_length=int(pwd_len())
 special_characters = '._+-'
-password = ''
+password=''
 alphabet = string.ascii_letters + string.digits + special_characters
 while not compliant_pwd(password):
     password = ''.join(secrets.choice(alphabet) for i in range(password_length))
