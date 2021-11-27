@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-# generates password with letters, digits and special symbols
+# generates password with uppercase and lowercase letters, digits and special symbols
 # Author: Ricardo Vieira
 # Creation date: 18/01/2021
-# Last change: 15/11/2021
+# Last change: 18/11/2021
 
 import secrets
 import string
@@ -27,16 +27,18 @@ def pwd_len():
         return(default_pwd_len)
 
 def compliant_pwd(candidate_pwd):
-    check_upper = check_lower = check_special_char = False
+    check_upper = check_lower = check_special_char = check_digit = False
     
     for letter in candidate_pwd:
         if letter.isupper():
             check_upper = True
         if letter.islower():
             check_lower = True
+        if letter.isdigit():
+            check_digit = True
         if letter in ('._+-'):
             check_special_char = True
-    return check_lower and check_upper and check_special_char
+    return check_lower and check_upper and check_special_char and check_digit
         
 password_length=int(pwd_len())
 special_characters = '._+-'
