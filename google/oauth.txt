@@ -1,0 +1,7 @@
+Client ID
+636476162356-fksb3vrp6v2rtb4noe289bt04lb2p82n.apps.googleusercontent.com
+
+Client secret
+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
+
+

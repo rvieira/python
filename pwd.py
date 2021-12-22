@@ -13,17 +13,23 @@ import configparser
 config = configparser.ConfigParser()
 config.read('pwd.ini')
 default_pwd_len = config.getint('defaults','pwd_length')
+min_pwd_length=4
+errors = ["No errors","Usage: pwd.py [password length]","Password length too short"]
 
-def error():
-    print("wrong parameter")
+def error(err_code):
+    print(errors[err_code])
+    exit(err_code)
     
 def pwd_len():
     if len(sys.argv) < 2:
         return(default_pwd_len)
     elif sys.argv[1].isdigit():
-        return(sys.argv[1])
+        if int(sys.argv[1]) >= min_pwd_length:
+            return(sys.argv[1])
+        else:
+            error(2)
     else:
-        error()
+        error(1)
         return(default_pwd_len)
 
 def compliant_pwd(candidate_pwd):

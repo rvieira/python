@@ -1,21 +1,11 @@
-# Copyright 2018 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Dec 22 18:28:31 2021
 
-# [START calendar_quickstart]
-from __future__ import print_function
+@author: ricardovieira
+"""
 
-import datetime
 import os.path
 
 from google.auth.transport.requests import Request
@@ -26,7 +16,7 @@ from googleapiclient.errors import HttpError
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
-
+dictionary_output = True
 
 def main():
     """Shows basic usage of the Google Calendar API.
@@ -54,26 +44,16 @@ def main():
         service = build('calendar', 'v3', credentials=creds)
 
         # Call the Calendar API
-        now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
-        print('Getting the upcoming 10 events')
-        events_result = service.events().list(calendarId='primary', timeMin=now,
-                                              maxResults=30, singleEvents=True,
-                                              orderBy='startTime').execute()
-        events = events_result.get('items', [])
+        print('Calendars:')
         calendar_list = service.calendarList().list().execute()
-        #items = calendar_list.getitems()
+        if dictionary_output:
+            end_print = ", "
+        else:
+            end_print = "\n"
         for calendar in calendar_list["items"]:
-            print(calendar["summary"]+": "+calendar["id"])
-
-        if not events:
-            print('No upcoming events found.')
-            return
+            print('"' + calendar["summary"]+'" : "' + calendar["id"] + '"', end=end_print)
 
         # Prints the start and name of the next 10 events
-        for event in events:
-            start = event['start'].get('dateTime', event['start'].get('date'))
-            #print(start, event['summary'])
-
     except HttpError as error:
         print('An error occurred: %s' % error)
 
