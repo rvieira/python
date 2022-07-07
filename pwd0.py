@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # generates password with uppercase and lowercase letters, digits and special symbols
 # Author: Ricardo Vieira
