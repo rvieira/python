@@ -3,16 +3,15 @@
 # generates password with uppercase and lowercase letters, digits and special symbols
 # Author: Ricardo Vieira
 # Creation date: 18/01/2021
-# Last change: 18/11/2021
+# Last change: 07/07/2022
+# This version utilises random instead of secrets for lower versions
+# Also removed the config file (and the need for configparser)
 
-import secrets
+import random
 import string
 import sys
-import configparser
 
-config = configparser.ConfigParser()
-config.read('pwd.ini')
-default_pwd_len = config.getint('defaults','pwd_length')
+default_pwd_len = 20
 min_pwd_length=4
 errors = ["No errors","Usage: pwd.py [password length]","Password length too short"]
 
@@ -51,6 +50,6 @@ special_characters = '._+-'
 password=''
 alphabet = string.ascii_letters + string.digits + special_characters
 while not compliant_pwd(password):
-    password = ''.join(secrets.choice(alphabet) for i in range(password_length))
+    password = ''.join(random.choice(alphabet) for i in range(password_length))
 print("Length:",password_length)
 print("Password:",password)
