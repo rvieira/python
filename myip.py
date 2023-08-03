@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from requests import get
 ip = get('https://api.ipify.org').content.decode('utf8')
