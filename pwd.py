@@ -9,12 +9,36 @@ import secrets
 import string
 import sys
 import configparser
+import os
+#from configparser import SafeConfigParser
+        
+# config = configparser.ConfigParser()
+# config.read('pwd.ini')
+# default_pwd_len = config.getint('defaults','pwd_length')
+# min_pwd_length=4
+# errors = ["No errors","Usage: pwd.py [password length]","Password length too short"]
 
-config = configparser.ConfigParser()
-config.read('pwd.ini')
-default_pwd_len = config.getint('defaults','pwd_length')
+default_pwd_len=20
 min_pwd_length=4
-errors = ["No errors","Usage: pwd.py [password length]","Password length too short"]
+
+def main():
+    filename='pwd.ini'
+    if os.path.isfile(filename):
+        config=configparser.ConfigParser()
+        config.read(filename)
+        default_pwd_len=config.getint('defaults','pwd_length')
+        min_pwd_length=4
+        errors = ["No errors","Usage: pwd.py [password length]","Password length too short"]
+    else:
+        default_pwd_len=20
+    password_length=int(pwd_len())
+    special_characters = '._+-'
+    password=''
+    alphabet = string.ascii_letters + string.digits + special_characters
+    while not compliant_pwd(password):
+        password = ''.join(secrets.choice(alphabet) for i in range(password_length))
+    print("Length:",password_length)
+    print("Password:",password)
 
 def error(err_code):
     print(errors[err_code])
@@ -44,13 +68,7 @@ def compliant_pwd(candidate_pwd):
             check_digit = True
         if letter in ('._+-'):
             check_special_char = True
-    return check_lower and check_upper and check_special_char and check_digit
-        
-password_length=int(pwd_len())
-special_characters = '._+-'
-password=''
-alphabet = string.ascii_letters + string.digits + special_characters
-while not compliant_pwd(password):
-    password = ''.join(secrets.choice(alphabet) for i in range(password_length))
-print("Length:",password_length)
-print("Password:",password)
+    return check_lower and check_upper and check_special_char and check_digit        
+
+if __name__=="__main__":
+    main()
