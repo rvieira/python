@@ -10,31 +10,25 @@ import string
 import sys
 import configparser
 import os
-#from configparser import SafeConfigParser
-        
-# config = configparser.ConfigParser()
-# config.read('pwd.ini')
-# default_pwd_len = config.getint('defaults','pwd_length')
-# min_pwd_length=4
-# errors = ["No errors","Usage: pwd.py [password length]","Password length too short"]
+
+errors = ["No errors","Usage: pwd.py [password length]","Password length too short"]
 
 default_pwd_len=20
 min_pwd_length=4
+special_characters = '._+-'
+alphabet = string.ascii_letters + string.digits + special_characters
 
 def main():
+    """
+    Main function to generate a compliant password based on the given or default length.
+    """
     filename='pwd.ini'
     if os.path.isfile(filename):
         config=configparser.ConfigParser()
         config.read(filename)
         default_pwd_len=config.getint('defaults','pwd_length')
-        min_pwd_length=4
-        errors = ["No errors","Usage: pwd.py [password length]","Password length too short"]
-    else:
-        default_pwd_len=20
     password_length=int(pwd_len())
-    special_characters = '._+-'
     password=''
-    alphabet = string.ascii_letters + string.digits + special_characters
     while not compliant_pwd(password):
         password = ''.join(secrets.choice(alphabet) for i in range(password_length))
     print("Length:",password_length)
@@ -42,19 +36,19 @@ def main():
 
 def error(err_code):
     print(errors[err_code])
-    exit(err_code)
+    sys.exit(err_code)
     
 def pwd_len():
     if len(sys.argv) < 2:
-        return(default_pwd_len)
+        return default_pwd_len
     elif sys.argv[1].isdigit():
         if int(sys.argv[1]) >= min_pwd_length:
-            return(sys.argv[1])
+            return int(sys.argv[1])
         else:
             error(2)
     else:
         error(1)
-        return(default_pwd_len)
+        return default_pwd_len
 
 def compliant_pwd(candidate_pwd):
     check_upper = check_lower = check_special_char = check_digit = False
