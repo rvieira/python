@@ -1,0 +1,21 @@
+ricardovieira@luft-22 python % python3.9 oracle.py
+Traceback (most recent call last):
+  File "/Users/ricardovieira/github/python/oracle.py", line 1, in <module>
+    import cx_Oracle
+ModuleNotFoundError: No module named 'cx_Oracle'
+ricardovieira@luft-22 python % pip install cx_Oracle
+DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621
+Defaulting to user installation because normal site-packages is not writeable
+Collecting cx_Oracle
+  Downloading cx_Oracle-8.3.0.tar.gz (363 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 363.9/363.9 kB 3.2 MB/s eta 0:00:00
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Preparing metadata (pyproject.toml) ... done
+Building wheels for collected packages: cx_Oracle
+  Building wheel for cx_Oracle (pyproject.toml) ... done
+  Created wheel for cx_Oracle: filename=cx_Oracle-8.3.0-cp39-cp39-macosx_11_0_x86_64.whl size=184104 sha256=44ef693a1b5571a496965f5287808a38ec3d261245f94f5e5605ee1a6dd07f51
+  Stored in directory: /Users/ricardovieira/Library/Caches/pip/wheels/c4/a8/38/5910c0425c80979bade466c4a0e498c8ccb7dea7cfd172494f
+Successfully built cx_Oracle
+Installing collected packages: cx_Oracle
+Successfully installed cx_Oracle-8.3.0

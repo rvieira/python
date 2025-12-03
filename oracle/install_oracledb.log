@@ -1,0 +1,20 @@
+ricardovieira@luft-22 python % pip install oracledb
+DEPRECATION: Configuring installation scheme with distutils config files is deprecated and will no longer work in the near future. If you are using a Homebrew or Linuxbrew Python, please see discussion at https://github.com/Homebrew/homebrew-core/issues/76621
+Defaulting to user installation because normal site-packages is not writeable
+Collecting oracledb
+  Downloading oracledb-1.4.2-cp39-cp39-macosx_10_9_universal2.whl.metadata (5.1 kB)
+Collecting cryptography>=3.2.1 (from oracledb)
+  Downloading cryptography-41.0.5-cp37-abi3-macosx_10_12_x86_64.whl.metadata (5.2 kB)
+Collecting cffi>=1.12 (from cryptography>=3.2.1->oracledb)
+  Downloading cffi-1.16.0-cp39-cp39-macosx_10_9_x86_64.whl.metadata (1.5 kB)
+Collecting pycparser (from cffi>=1.12->cryptography>=3.2.1->oracledb)
+  Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.7/118.7 kB 2.1 MB/s eta 0:00:00
+Downloading oracledb-1.4.2-cp39-cp39-macosx_10_9_universal2.whl (3.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 10.5 MB/s eta 0:00:00
+Downloading cryptography-41.0.5-cp37-abi3-macosx_10_12_x86_64.whl (2.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.9/2.9 MB 10.1 MB/s eta 0:00:00
+Downloading cffi-1.16.0-cp39-cp39-macosx_10_9_x86_64.whl (182 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 182.5/182.5 kB 8.7 MB/s eta 0:00:00
+Installing collected packages: pycparser, cffi, cryptography, oracledb
+Successfully installed cffi-1.16.0 cryptography-41.0.5 oracledb-1.4.2 pycparser-2.21
